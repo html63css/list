@@ -6,7 +6,7 @@ struct List
 {
 public:
 	void remove(Element*);
-	void add(int, Element* = nullptr); //Добавляем элемент ПОСЛЕ указаного
+	void add(Element&, Element* = nullptr); //Добавляем элемент ПОСЛЕ указаного
 	void closure(Element*);
 	void disjunction(Element*);
 	List();

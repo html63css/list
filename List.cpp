@@ -27,7 +27,7 @@ List::~List()
 	//delete Iterator;
 }
 
-void List::add(int number, Element* base) // Проверить: достаточно ли объявления параметра по умолчанию в его интерфейсе (? = nullptr)
+void List::add(Element& element, Element* base) // Проверить: достаточно ли объявления параметра по умолчанию в его интерфейсе (? = nullptr)
 {
 
 	if (isRing_ == true)
@@ -35,36 +35,26 @@ void List::add(int number, Element* base) // Проверить: достаточно ли объявления
 		std::cout << "\nНельзя производит добавление в цепи \n";
 		return;
 	}
-
-
-	Element element(number);
-	if (head_ == nullptr)
+	if (count_ == 0)
 	{
 		head_ = &element;
 		end_ = &element;
-		std::cout << "\nБудет добавлен первый элемент списка!\n";
+	}
+	else if (base == nullptr)
+	{
+		element.setNext(head_);
+		head_ = &element;
+	}
+	else if(base == end_)
+	{
+		
 	}
 	else
 	{
-		if (base == end_)
-		{
-			end_ = &element;
-			std::cout << "\nБудет добавление в конец списка\n";
-		}
-
-		if (base != nullptr)
-		{
-			bufferAdd_ = base->getNext();
-			base->setNext(&element);
-			element.setNext(bufferAdd_); // Возможна ошибка!
-			bufferAdd_ = nullptr;
-		}
-		else
-		{
-			std::cout << "\nБудет добавление в начало списка\n";
-			element.setNext(head_);
-			head_ = &element;
-		}
+		bufferAdd_ = base->getNext();
+		base->setNext(&element);
+		element.setNext(bufferAdd_);
+		bufferAdd_ = nullptr;
 	}
 	++count_;
 	std::cout << "\nЭлемент добавлен\t Количество элементов списка:" << count_ << "\n";
