@@ -8,7 +8,6 @@ public:
 	void setNext(Element*);
 	Element* getNext();
 	Element(int);
-	~Element();
 private:
 	int date_;
 	Element* next_;

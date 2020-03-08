@@ -9,12 +9,30 @@ List::List()
 	bufferAdd_ = nullptr;
 }
 
+List::~List()
+{
+	Element* Iterator = head_;
+	Element* destBuffer;
+	std::cout << "\nДеструктор списка";
+	std::cout << "\n head = " << head_->getDate() <<" : [" << head_ << "] \t end = " << end_->getDate() << " :[" << end_ << "]";
+	while (Iterator != end_)
+	{
+		std::cout << "\nИтерация деструктора";
+		destBuffer = Iterator;
+		Iterator = Iterator->getNext();
+		std::cout << "\nУдаление элемента со значением: " << destBuffer->getDate() << "\n";
+		delete destBuffer;
+	}
+	std::cout << "\nКонец работы деструктора";
+	//delete Iterator;
+}
+
 void List::add(int number, Element* base) // Проверить: достаточно ли объявления параметра по умолчанию в его интерфейсе (? = nullptr)
 {
 
 	if (isRing_ == true)
 	{
-		std::cout << "Нельзя производит добавление в цепи \n";
+		std::cout << "\nНельзя производит добавление в цепи \n";
 		return;
 	}
 
@@ -24,28 +42,33 @@ void List::add(int number, Element* base) // Проверить: достаточно ли объявления
 	{
 		head_ = &element;
 		end_ = &element;
-		std::cout << "Добавлен первый элемент списка!\n";
+		std::cout << "\nБудет добавлен первый элемент списка!\n";
 	}
 	else
 	{
-		if (base == nullptr)
-		{
-			head_ = &element;
-			std::cout << "Добавление в начало списка\n";
-		}
-		if (end_ == base)
+		if (base == end_)
 		{
 			end_ = &element;
-			std::cout << "Добавление в конец списка\n";
-
+			std::cout << "\nБудет добавление в конец списка\n";
 		}
-		bufferAdd_ = base->getNext();
-		base->setNext(&element);
-		element.setNext(bufferAdd_); // Возможна ошибка!
-		bufferAdd_ = nullptr;
+
+		if (base != nullptr)
+		{
+			bufferAdd_ = base->getNext();
+			base->setNext(&element);
+			element.setNext(bufferAdd_); // Возможна ошибка!
+			bufferAdd_ = nullptr;
+		}
+		else
+		{
+			std::cout << "\nБудет добавление в начало списка\n";
+			element.setNext(head_);
+			head_ = &element;
+		}
 	}
 	++count_;
-	std::cout << "Элемент добавлен\t Количество элементов списка:" << count_ ;
+	std::cout << "\nЭлемент добавлен\t Количество элементов списка:" << count_ << "\n";
+	std::cout << "Адрес данного элемента: "<< &element << "\t Значение данного элемента:"<< element.getDate() <<"\n";
 }
 
 void List::remove(Element* base)
@@ -53,7 +76,7 @@ void List::remove(Element* base)
 
 	if (isRing_ == true)
 	{
-		std::cout << "Нельзя производит удаление в цепи \n";
+		std::cout << "\nНельзя производит удаление в цепи \n";
 		return;
 	}
 
@@ -61,7 +84,7 @@ void List::remove(Element* base)
 	{
 		head_ = head_->getNext();
 		delete base;
-		std::cout << "Удаление первого элемента\n";
+		std::cout << "\nУдаление первого элемента\n";
 	}
 	else if (base != head_ && base == end_)
 	{
@@ -73,7 +96,7 @@ void List::remove(Element* base)
 		end_ = I;
 		delete I;
 		delete base;
-		std::cout << "Удаление последнего элемента\n";
+		std::cout << "\nУдаление последнего элемента\n";
 
 	}
 	else if (base == head_ && base == end_)
@@ -81,7 +104,7 @@ void List::remove(Element* base)
 		head_ = nullptr;
 		end_ = nullptr;
 		delete base;
-		std::cout << "Удаление единственного элемента\n";
+		std::cout << "\nУдаление единственного элемента\n";
 	}
 	else
 	{
@@ -92,31 +115,31 @@ void List::remove(Element* base)
 		}
 		I->setNext(base->getNext());
 		delete base;
-		std::cout << "Удаление элемента\n";
+		std::cout << "\nУдаление элемента\n";
 	}
 	--count_;
-	std::cout << "Новый размер спика:\n" << count_;
+	std::cout << "\nНовый размер спика:\n" << count_;
 }
 
 void List::closure(Element* base)
 {
 	if (base != end_)
 	{
-		std::cout << "Ошибка. Эта функция выполняется только для последнего элемента";
+		std::cout << "\nОшибка. Эта функция выполняется только для последнего элемента\n";
 	}
 	if (isRing_ != false)
 	{
-		std::cout << "Ошибка. Список уже является цепью\n";
+		std::cout << "\nОшибка. Список уже является цепью\n";
 	}
 	if (count_ < 1)
 	{
-		std::cout << "Ошибка. Нельзя сделать цепь из списка с 1 элементом\n";
+		std::cout << "\nОшибка. Нельзя сделать цепь из списка с 1 элементом\n";
 	}
 	if (isRing_ == false && base == end_ && count_ > 1)
 	{
 		base->setNext(head_);
 		isRing_ = true;
-		std::cout << "Список превращён в цепь\n";
+		std::cout << "\nСписок превращён в цепь\n";
 	}
 }
 
@@ -124,13 +147,13 @@ void List::disjunction(Element* base)	//Разрыв правой связи
 {
 	if (isRing_ == false)
 	{
-		std::cout << "Ошибка. Список не является цепью\n";
+		std::cout << "\nОшибка. Список не является цепью\n";
 	}
 	else
 	{
 		head_ = base->getNext();
 		end_ = base;
 		base->setNext(nullptr);
-		std::cout << "Цепь разорвана\n";
+		std::cout << "\nЦепь разорвана\n";
 	}
 }

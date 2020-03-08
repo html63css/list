@@ -1,12 +1,5 @@
 #include "Element.h"
 
-Element::~Element()
-{
-	std::cout << "Удаление элемента\n"; // Для проверки корректности работы деструктора
-	delete next_;
-}
-
-
 Element::Element(int number)
 {
 	date_ = number;

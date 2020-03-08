@@ -10,6 +10,7 @@ public:
 	void closure(Element*);
 	void disjunction(Element*);
 	List();
+	~List();
 private:
 	int count_;
 	bool isRing_;
