@@ -9,24 +9,6 @@ List::List()
 	bufferAdd_ = nullptr;
 }
 
-List::~List()
-{
-	Element* Iterator = head_;
-	Element* destBuffer;
-	std::cout << "\nДеструктор списка";
-	std::cout << "\n head = " << head_->getDate() <<" : [" << head_ << "] \t end = " << end_->getDate() << " :[" << end_ << "]";
-	while (Iterator != end_)
-	{
-		std::cout << "\nИтерация деструктора";
-		destBuffer = Iterator;
-		Iterator = Iterator->getNext();
-		std::cout << "\nУдаление элемента со значением: " << destBuffer->getDate() << "\n";
-		delete destBuffer;
-	}
-	std::cout << "\nКонец работы деструктора";
-	//delete Iterator;
-}
-
 void List::add(Element& element, Element* base) // Проверить: достаточно ли объявления параметра по умолчанию в его интерфейсе (? = nullptr)
 {
 
@@ -45,16 +27,16 @@ void List::add(Element& element, Element* base) // Проверить: достаточно ли объя
 		element.setNext(head_);
 		head_ = &element;
 	}
-	else if(base == end_)
-	{
-		
-	}
 	else
 	{
 		bufferAdd_ = base->getNext();
 		base->setNext(&element);
 		element.setNext(bufferAdd_);
 		bufferAdd_ = nullptr;
+		if (base == end_)
+		{
+			end_ = &element;
+		}
 	}
 	++count_;
 	std::cout << "\nЭлемент добавлен\t Количество элементов списка:" << count_ << "\n";
