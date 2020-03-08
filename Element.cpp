@@ -1,20 +1,33 @@
-struct Element
+#include "Element.h"
+
+Element::~Element()
 {
-public:
-	void setDate(int date)
-	{
-		date_= date;
-	}
-	int getDate()
-	{
-		return date_;
-	}
-private:
-	Element(int date)
-	{
-		next_ = nullptr;
-		date_ = date;
-	};
-	int date_;
-	Element *next_;
-};
+	std::cout << "Удаление элемента\n"; // Для проверки корректности работы деструктора
+	delete next_;
+}
+
+
+Element::Element(int number)
+{
+	date_ = number;
+	next_ = nullptr;
+}
+
+void Element::setDate(int date)
+{
+	date_ = date;
+}
+
+int Element::getDate()
+{
+	return date_;
+}
+
+void Element::setNext(Element* link)
+{
+	next_ = link;
+}
+Element* Element::getNext()
+{
+	return next_;
+}
