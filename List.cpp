@@ -90,7 +90,7 @@ void List::remove(Element* base)
 		{
 			I = I->getNext();
 		}
-		I->setNext = base->getNext;
+		I->setNext(base->getNext());
 		delete base;
 		std::cout << "Удаление элемента\n";
 	}

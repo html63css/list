@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
 #include "Element.h"
-extern struct List
+
+struct List
 {
 public:
 	void remove(Element*);

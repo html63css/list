@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-extern struct Element{
+struct Element{
 public:
 	void setDate(int);
 	int getDate();
