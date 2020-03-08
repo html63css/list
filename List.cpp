@@ -129,3 +129,19 @@ void List::disjunction(Element* base)	//Разрыв правой связи
 		std::cout << "\nЦепь разорвана\n";
 	}
 }
+
+int List::length()
+{
+	return count_;
+}
+
+Element* List::getHead()
+{
+	return head_;
+}
+
+Element* List::getEnd()
+{
+	return end_;
+}
+

@@ -9,11 +9,14 @@ public:
 	void add(Element&, Element* = nullptr); //Добавляем элемент ПОСЛЕ указаного
 	void closure(Element*);
 	void disjunction(Element*);
+	int length();
+	Element* getHead();
+	Element* getEnd();
 	List();
-	Element* head_;
-	Element* end_;
 private:
 	int count_;
 	bool isRing_;
+	Element* head_;
+	Element* end_;
 	Element* bufferAdd_;
 };
