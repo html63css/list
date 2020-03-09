@@ -2,9 +2,11 @@
 #include <conio.h>
 #define KEY_DOWN 80
 //#define KEY_UP 72
-#define KEY_DELETE 8
+#define KEY_REMOVE 8
 #define KEY_ADD 13
 #define KEY_END 27
+#define KEY_CLOSURE 9
+#define KEY_DISJUNCTION 32
 #pragma warning (default : 4996)
 
 int main()
@@ -37,8 +39,8 @@ int main()
 		system("cls");
 		std::cout << "ƒŒ¡¿¬»“‹ ›À≈Ã≈Õ“ œŒ—À≈ ” ¿«¿“≈Àﬂ - ENTERT\n";
 		std::cout << "”ƒ¿À»“‹ ›À≈Ã≈Õ“ ›À≈Ã≈Õ“, Õ¿  Œ“Œ–ŒÃ —“Œ»“ ” ¿«¿“≈À‹ - BACKSPACE\n";
-		std::cout << "œ–≈¬–¿“»“‹ —œ»—Œ  ¬ ÷≈œ‹ - \n";
-		std::cout << "–¿«Œ–¬¿“‹ ÷≈œ‹ - \n";
+		std::cout << "œ–≈¬–¿“»“‹ —œ»—Œ  ¬ ÷≈œ‹ - TAB\n";
+		std::cout << "–¿«Œ–¬¿“‹ ÷≈œ‹ - SPACE\n";
 		std::cout << "¬€…“» »« œ–Œ√–¿ÃÃ€ - ESC\n";
 		if (ch >= 0)
 		{
@@ -56,7 +58,7 @@ int main()
 		do
 		{
 			ch = getch();
-		} while (ch != KEY_DOWN && ch != KEY_ADD && ch != KEY_DELETE && ch != KEY_END);
+		} while (ch != KEY_DOWN && ch != KEY_ADD && ch != KEY_REMOVE && ch != KEY_DISJUNCTION && ch != KEY_CLOSURE && ch != KEY_END);
 		switch (ch)
 		{
 		case (KEY_DOWN):
@@ -94,8 +96,9 @@ int main()
 			std::cin >> buff;										// ÓÂÍÚÌ˚È ‚‚Ó‰
 			element = new Element(buff);
 			list.add(*element,positionElement);
+			getch();
 			break;
-		case(KEY_DELETE):
+		case(KEY_REMOVE):
 			if (position != 0)
 			{
 				if (position == list.length())
@@ -111,6 +114,20 @@ int main()
 					positionElement = bufferDel;
 				}
 			}
+			getch();
+			break;
+		case(KEY_CLOSURE):
+			list.closure(positionElement);
+			getch();
+			break;
+		case(KEY_DISJUNCTION):
+			if (list.getIsRing() && positionElement != nullptr)
+			{
+				list.disjunction(positionElement);
+				position = 0;
+				positionElement = nullptr;
+			}
+			getch();
 			break;
 		}
 	} while (ch != KEY_END);

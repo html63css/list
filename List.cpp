@@ -125,6 +125,7 @@ void List::disjunction(Element* base)	//Разрыв правой связи
 		head_ = base->getNext();
 		end_ = base;
 		base->setNext(nullptr);
+		isRing_ = false;
 		std::cout << "\nЦепь разорвана\n";
 	}
 }
@@ -144,3 +145,7 @@ Element* List::getEnd()
 	return end_;
 }
 
+bool List::getIsRing()
+{
+	return isRing_;
+}
