@@ -66,7 +66,6 @@ void List::remove(Element* base)
 			I = I->getNext();
 		}
 		end_ = I;
-		delete I;
 		delete base;
 		std::cout << "\nУдаление последнего элемента\n";
 

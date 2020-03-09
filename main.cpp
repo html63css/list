@@ -1,21 +1,119 @@
 #include "List.h"
+#include <conio.h>
+#define KEY_DOWN 80
+//#define KEY_UP 72
+#define KEY_DELETE 8
+#define KEY_ADD 13
+#define KEY_END 27
+#pragma warning (default : 4996)
 
 int main()
 {
 	setlocale(0, "");
 	List list;
-	Element* a1;
+	Element* element;
 	Element* I;
-	system("cls");
+	char ch(0);
+	int position(0);
+	int buff(0);
+	Element* positionElement = nullptr;
+	Element* bufferDel = nullptr;
+
+	element = new Element(3);
+	list.add(*element);
+	element = new Element(15);
+	list.add(*element);
+	element = new Element(6);
+	list.add(*element);
+	element = new Element(124);
+	list.add(*element);
+	element = new Element(32);
+	list.add(*element);
+	element = new Element(64);
+	list.add(*element);
+
 	do
 	{
-		I = list.getHead();
-		for (int i = 0; i < list.length(); ++i)
+		system("cls");
+		std::cout << "ÄÎÁÀÂÈÒÜ ÝËÅÌÅÍÒ ÏÎÑËÅ ÓÊÀÇÀÒÅËß - ENTERT\n";
+		std::cout << "ÓÄÀËÈÒÜ ÝËÅÌÅÍÒ ÝËÅÌÅÍÒ, ÍÀ ÊÎÒÎÐÎÌ ÑÒÎÈÒ ÓÊÀÇÀÒÅËÜ - BACKSPACE\n";
+		std::cout << "ÏÐÅÂÐÀÒÈÒÜ ÑÏÈÑÎÊ Â ÖÅÏÜ - \n";
+		std::cout << "ÐÀÇÎÐÂÀÒÜ ÖÅÏÜ - \n";
+		std::cout << "ÂÛÉÒÈ ÈÇ ÏÐÎÃÐÀÌÌÛ - ESC\n";
+		if (ch >= 0)
 		{
-			std::cout << I->getDate() << "\n";
-			I = I->getNext();
+			I = list.getHead();
+			if (position == 0) std::cout << "\t\t<--";
+			std::cout << "\n";
+			for (int i = 1; i <= list.length(); ++i)
+			{
+				std::cout << "\t" << I->getDate();
+				if (position == i) std::cout << "\t<--";
+				std::cout << "\n";
+				I = I->getNext();
+			}
 		}
-	} while (1);
+		do
+		{
+			ch = getch();
+		} while (ch != KEY_DOWN && ch != KEY_ADD && ch != KEY_DELETE && ch != KEY_END);
+		switch (ch)
+		{
+		case (KEY_DOWN):
+			if (position == list.length())
+			{
+				position = 0;
+				positionElement = nullptr;
+			}
+			else
+			{
+				++position;
+				if (position == 1)
+				{
+					positionElement = list.getHead();
+				}
+				else
+				{
+					positionElement = positionElement->getNext();
+				}
+			}
+			break;
+		//case (KEY_UP):
+		//	if (position == 0)
+		//	{
+		//		position = (list.length() - 1);
+		//		positionElement = list.getEnd();
+		//	}
+		//	else
+		//	{
+		//		--position;
+		//		positionElement \\ ïåðåðàáîòàòü ýëåìåíò íà ïîçèöèè
+		//	}
+		//	break;
+		case(KEY_ADD):
+			std::cin >> buff;										//Êîððåêòíûé ââîä
+			element = new Element(buff);
+			list.add(*element,positionElement);
+			break;
+		case(KEY_DELETE):
+			if (position != 0)
+			{
+				if (position == list.length())
+				{
+					position = 0;
+					list.remove(positionElement);
+					positionElement = nullptr;
+				}
+				else
+				{
+					bufferDel = positionElement->getNext();
+					list.remove(positionElement);
+					positionElement = bufferDel;
+				}
+			}
+			break;
+		}
+	} while (ch != KEY_END);
 
 	return 0;
 }
