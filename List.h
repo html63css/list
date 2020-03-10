@@ -10,7 +10,6 @@ public:
 	void closure(Element*);
 	void disjunction(Element*);
 	int length();
-	bool getIsRing();
 	Element* getHead();
 	Element* getEnd();
 	List();

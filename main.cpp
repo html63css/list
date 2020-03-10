@@ -117,11 +117,14 @@ int main()
 			getch();
 			break;
 		case(KEY_CLOSURE):
-			list.closure(positionElement);
+			if (positionElement != nullptr)
+			{
+				list.closure(positionElement);
+			}
 			getch();
 			break;
 		case(KEY_DISJUNCTION):
-			if (list.getIsRing() && positionElement != nullptr)
+			if (positionElement != nullptr)
 			{
 				list.disjunction(positionElement);
 				position = 0;

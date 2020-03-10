@@ -144,8 +144,3 @@ Element* List::getEnd()
 {
 	return end_;
 }
-
-bool List::getIsRing()
-{
-	return isRing_;
-}
