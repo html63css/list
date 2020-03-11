@@ -15,29 +15,26 @@ int main()
 	List list;
 	Element* element;
 	Element* I;
+	Element* positionElement = nullptr;
+	Element* bufferDel = nullptr;
 	char ch(0);
 	int position(0);
 	int buff(0);
-	Element* positionElement = nullptr;
-	Element* bufferDel = nullptr;
-
-	element = new Element(3);
-	list.add(*element);
-	element = new Element(15);
-	list.add(*element);
-	element = new Element(6);
-	list.add(*element);
-	element = new Element(124);
-	list.add(*element);
-	element = new Element(32);
-	list.add(*element);
-	element = new Element(64);
-	list.add(*element);
-
+	int size(0);
+	std::cout << "¬‚Â‰ËÚÂ Ì‡˜‡Î¸Ì˚È ‡ÁÏÂ ÒÔËÒÍ‡\n";
+	std::cin >> size;
+	if (size <= 0) exit(0);
+	for (int i = 0 ; i < size ; ++i)
+	{
+		std::cout << "\n¬‚Â‰ËÚÂ ˜ËÒÎÓ\n";
+		std::cin >> buff;
+		element = new Element(buff);
+		list.add(*element);
+	}
 	do
 	{
 		system("cls");
-		std::cout << "ƒŒ¡¿¬»“‹ ›À≈Ã≈Õ“ œŒ—À≈ ” ¿«¿“≈Àﬂ - ENTERT\n";
+		std::cout << "ƒŒ¡¿¬»“‹ ›À≈Ã≈Õ“ œŒ—À≈ ” ¿«¿“≈Àﬂ - ENTER\n";
 		std::cout << "”ƒ¿À»“‹ ›À≈Ã≈Õ“ ›À≈Ã≈Õ“, Õ¿  Œ“Œ–ŒÃ —“Œ»“ ” ¿«¿“≈À‹ - BACKSPACE\n";
 		std::cout << "œ–≈¬–¿“»“‹ —œ»—Œ  ¬ ÷≈œ‹ - TAB\n";
 		std::cout << "–¿«Œ–¬¿“‹ ÷≈œ‹ - SPACE\n";
@@ -93,6 +90,8 @@ int main()
 		//	}
 		//	break;
 		case(KEY_ADD):
+			system("cls");
+			std::cout << "¬‚Â‰ËÚÂ ˜ËÒÎÓ \n";
 			std::cin >> buff;										// ÓÂÍÚÌ˚È ‚‚Ó‰
 			element = new Element(buff);
 			list.add(*element,positionElement);
@@ -117,10 +116,7 @@ int main()
 			getch();
 			break;
 		case(KEY_CLOSURE):
-			if (positionElement != nullptr)
-			{
-				list.closure(positionElement);
-			}
+			list.closure();
 			getch();
 			break;
 		case(KEY_DISJUNCTION):

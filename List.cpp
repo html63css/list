@@ -92,12 +92,8 @@ void List::remove(Element* base)
 	std::cout << "\nНовый размер спика:\n" << count_;
 }
 
-void List::closure(Element* base)
+void List::closure()
 {
-	if (base != end_)
-	{
-		std::cout << "\nОшибка. Эта функция выполняется только для последнего элемента\n";
-	}
 	if (isRing_ != false)
 	{
 		std::cout << "\nОшибка. Список уже является цепью\n";
@@ -106,9 +102,9 @@ void List::closure(Element* base)
 	{
 		std::cout << "\nОшибка. Нельзя сделать цепь из списка с 1 элементом\n";
 	}
-	if (isRing_ == false && base == end_ && count_ > 1)
+	if (isRing_ == false && count_ > 1)
 	{
-		base->setNext(head_);
+		end_->setNext(head_);
 		isRing_ = true;
 		std::cout << "\nСписок превращён в цепь\n";
 	}

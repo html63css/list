@@ -7,7 +7,7 @@ struct List
 public:
 	void remove(Element*);
 	void add(Element&, Element* = nullptr); //Добавляем элемент ПОСЛЕ указаного
-	void closure(Element*);
+	void closure();
 	void disjunction(Element*);
 	int length();
 	Element* getHead();
