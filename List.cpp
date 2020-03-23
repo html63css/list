@@ -12,11 +12,11 @@ List::List()
 void List::add(Element& element, Element* base) // Проверить: достаточно ли объявления параметра по умолчанию в его интерфейсе (? = nullptr)
 {
 
-	if (isRing_ == true)
-	{
-		std::cout << "\nНельзя производит добавление в цепи \n";
-		return;
-	}
+	//if (isRing_ == true)
+	//{
+	//	std::cout << "\nНельзя производит добавление в цепи \n";
+	//	return;
+	//}
 	if (count_ == 0)
 	{
 		head_ = &element;
@@ -26,6 +26,7 @@ void List::add(Element& element, Element* base) // Проверить: достаточно ли объя
 	{
 		element.setNext(head_);
 		head_ = &element;
+		end_->setNext(&element);
 	}
 	else
 	{
@@ -36,25 +37,30 @@ void List::add(Element& element, Element* base) // Проверить: достаточно ли объя
 		if (base == end_)
 		{
 			end_ = &element;
+			end_->setNext(head_);
 		}
 	}
 	++count_;
 	std::cout << "\nЭлемент добавлен\t Количество элементов списка:" << count_ << "\n";
-	std::cout << "Адрес данного элемента: "<< &element << "\t Значение данного элемента:"<< element.getDate() <<"\n";
 }
 
 void List::remove(Element* base)
 {
 
-	if (isRing_ == true)
+	if (isRing_ == true && count_ == 2 )
 	{
-		std::cout << "\nНельзя производит удаление в цепи \n";
+		std::cout << "\nОшибка удаления в цепи \n";
 		return;
 	}
 
 	if (base == head_ && base != end_)
 	{
 		head_ = head_->getNext();
+		if (isRing_ == true)
+		{
+			end_->setNext(head_);
+			std::cout << "\nЦЕПЬ\n";
+		}
 		delete base;
 		std::cout << "\nУдаление первого элемента\n";
 	}
@@ -66,6 +72,11 @@ void List::remove(Element* base)
 			I = I->getNext();
 		}
 		end_ = I;
+		if (isRing_ == true)
+		{
+			I->setNext(head_);
+			std::cout << "\nЦЕПЬ\n";
+		}
 		delete base;
 		std::cout << "\nУдаление последнего элемента\n";
 
@@ -98,14 +109,15 @@ void List::closure()
 	{
 		std::cout << "\nОшибка. Список уже является цепью\n";
 	}
-	if (count_ < 1)
+	if (count_ <= 1)
 	{
-		std::cout << "\nОшибка. Нельзя сделать цепь из списка с 1 элементом\n";
+		std::cout << "\nОшибка. Нельзя сделать цепь из списка с 1 или 0 элементом\n";
 	}
 	if (isRing_ == false && count_ > 1)
 	{
 		end_->setNext(head_);
 		isRing_ = true;
+		//end_ = head_ = nullptr;
 		std::cout << "\nСписок превращён в цепь\n";
 	}
 }

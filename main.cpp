@@ -77,28 +77,16 @@ int main()
 				}
 			}
 			break;
-		//case (KEY_UP):
-		//	if (position == 0)
-		//	{
-		//		position = (list.length() - 1);
-		//		positionElement = list.getEnd();
-		//	}
-		//	else
-		//	{
-		//		--position;
-		//		positionElement \\ переработать элемент на позиции
-		//	}
-		//	break;
 		case(KEY_ADD):
 			system("cls");
 			std::cout << "Введите число \n";
-			std::cin >> buff;										//Корректный ввод
+			std::cin >> buff;
 			element = new Element(buff);
 			list.add(*element,positionElement);
 			getch();
 			break;
 		case(KEY_REMOVE):
-			if (position != 0)
+ 			if (position != 0)
 			{
 				if (position == list.length())
 				{
