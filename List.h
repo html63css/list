@@ -1,12 +1,12 @@
 #pragma once
-#include <iostream>
 #include "Element.h"
+#include <iostream>
 
 struct List
 {
 public:
 	void remove(Element*);
-	void add(Element&, Element* = nullptr); //Добавляем элемент ПОСЛЕ указаного
+	void add(Element&, Element* = nullptr);
 	void closure();
 	void disjunction(Element*);
 	int length();

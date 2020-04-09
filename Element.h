@@ -1,14 +1,17 @@
 #pragma once
-#include <iostream>
+typedef union
+{
+	int date;
+	char* std;
+}int_std;
 
 struct Element{
 public:
-	void setDate(int);
 	int getDate();
 	void setNext(Element*);
 	Element* getNext();
 	Element(int);
 private:
-	int date_;
+	int_std date_;
 	Element* next_;
 };

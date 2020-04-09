@@ -2,18 +2,18 @@
 
 Element::Element(int number)
 {
-	date_ = number;
+	date_.date = number;
 	next_ = nullptr;
 }
 
-void Element::setDate(int date)
-{
-	date_ = date;
-}
-
+//void Element::setDate(int date)
+//{
+//	date_ = date;
+//}
+//
 int Element::getDate()
 {
-	return date_;
+	return date_.date;
 }
 
 void Element::setNext(Element* link)

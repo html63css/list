@@ -1,7 +1,6 @@
 #include "List.h"
 #include <conio.h>
 #define KEY_DOWN 80
-//#define KEY_UP 72
 #define KEY_REMOVE 8
 #define KEY_ADD 13
 #define KEY_END 27
@@ -34,10 +33,13 @@ int main()
 	do
 	{
 		system("cls");
+		std::cout << "ÑÒÐÅËÊÀ ÂÍÈÇ - ÄÂÈÆÅÍÈÅ ÏÎ ÑÏÈÑÊÓ ÂÍÈÇ(ÄÂÈÆÅÍÈÅ ÂÂÅÐÕ ÍÅÂÎÇÌÎÆÍÎ, Ò.Ê. ÑÏÈÑÎÊ ÎÄÍÎÑÂßÇÍÛÉ)\n";
 		std::cout << "ÄÎÁÀÂÈÒÜ ÝËÅÌÅÍÒ ÏÎÑËÅ ÓÊÀÇÀÒÅËß - ENTER\n";
 		std::cout << "ÓÄÀËÈÒÜ ÝËÅÌÅÍÒ ÝËÅÌÅÍÒ, ÍÀ ÊÎÒÎÐÎÌ ÑÒÎÈÒ ÓÊÀÇÀÒÅËÜ - BACKSPACE\n";
 		std::cout << "ÏÐÅÂÐÀÒÈÒÜ ÑÏÈÑÎÊ Â ÖÅÏÜ - TAB\n";
+		std::cout << "(ÏÐÅÂÐÀÒÈÒÜ Â ÖÅÏÜ ÌÎÆÍÎ ÒÎËÜÊÎ ÑÏÈÑÎÊ Ñ ÍÀÁÎÐÎÌ ÈÇ 2-Õ È ÁÎËÅÅ ÝËÅÌÅÍÒÎÂ)\n";
 		std::cout << "ÐÀÇÎÐÂÀÒÜ ÖÅÏÜ - SPACE\n";
+		std::cout << "(ÏÐÈ ÐÀÇÐÛÂÅ ÖÅÏÈ ÝËÅÌÅÍÒ ÐÀÇÐÛÂÀ ÑÒÀÍÎÂÈÒÑß ÏÎÑËÅÄÍÈÌ Â ÑÏÈÑÊÅ)\n";
 		std::cout << "ÂÛÉÒÈ ÈÇ ÏÐÎÃÐÀÌÌÛ - ESC\n";
 		if (ch >= 0)
 		{
@@ -83,7 +85,6 @@ int main()
 			std::cin >> buff;
 			element = new Element(buff);
 			list.add(*element,positionElement);
-			getch();
 			break;
 		case(KEY_REMOVE):
  			if (position != 0)
@@ -101,7 +102,6 @@ int main()
 					positionElement = bufferDel;
 				}
 			}
-			getch();
 			break;
 		case(KEY_CLOSURE):
 			list.closure();

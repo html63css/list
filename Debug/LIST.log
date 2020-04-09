@@ -1,2 +1,8 @@
-﻿  List.cpp
+﻿  main.cpp
+C:\Users\Саша\Desktop\1 курс 2 семестр\Программирование\LIST\main.cpp(59,1): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\conio.h(453): message : см. объявление "getch"
+C:\Users\Саша\Desktop\1 курс 2 семестр\Программирование\LIST\main.cpp(108,1): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\conio.h(453): message : см. объявление "getch"
+C:\Users\Саша\Desktop\1 курс 2 семестр\Программирование\LIST\main.cpp(117,1): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\conio.h(453): message : см. объявление "getch"
   LIST.vcxproj -> C:\Users\Саша\Desktop\1 курс 2 семестр\Программирование\LIST\Debug\LIST.exe

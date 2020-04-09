@@ -9,14 +9,8 @@ List::List()
 	bufferAdd_ = nullptr;
 }
 
-void List::add(Element& element, Element* base) // Проверить: достаточно ли объявления параметра по умолчанию в его интерфейсе (? = nullptr)
+void List::add(Element& element, Element* base)
 {
-
-	//if (isRing_ == true)
-	//{
-	//	std::cout << "\nНельзя производит добавление в цепи \n";
-	//	return;
-	//}
 	if (count_ == 0)
 	{
 		head_ = &element;
@@ -41,7 +35,6 @@ void List::add(Element& element, Element* base) // Проверить: достаточно ли объя
 		}
 	}
 	++count_;
-	std::cout << "\nЭлемент добавлен\t Количество элементов списка:" << count_ << "\n";
 }
 
 void List::remove(Element* base)
@@ -49,7 +42,6 @@ void List::remove(Element* base)
 
 	if (isRing_ == true && count_ == 2 )
 	{
-		std::cout << "\nОшибка удаления в цепи \n";
 		return;
 	}
 
@@ -59,10 +51,8 @@ void List::remove(Element* base)
 		if (isRing_ == true)
 		{
 			end_->setNext(head_);
-			std::cout << "\nЦЕПЬ\n";
 		}
 		delete base;
-		std::cout << "\nУдаление первого элемента\n";
 	}
 	else if (base != head_ && base == end_)
 	{
@@ -75,18 +65,14 @@ void List::remove(Element* base)
 		if (isRing_ == true)
 		{
 			I->setNext(head_);
-			std::cout << "\nЦЕПЬ\n";
 		}
 		delete base;
-		std::cout << "\nУдаление последнего элемента\n";
-
 	}
 	else if (base == head_ && base == end_)
 	{
 		head_ = nullptr;
 		end_ = nullptr;
 		delete base;
-		std::cout << "\nУдаление единственного элемента\n";
 	}
 	else
 	{
@@ -97,10 +83,8 @@ void List::remove(Element* base)
 		}
 		I->setNext(base->getNext());
 		delete base;
-		std::cout << "\nУдаление элемента\n";
 	}
 	--count_;
-	std::cout << "\nНовый размер спика:\n" << count_;
 }
 
 void List::closure()
@@ -117,12 +101,11 @@ void List::closure()
 	{
 		end_->setNext(head_);
 		isRing_ = true;
-		//end_ = head_ = nullptr;
 		std::cout << "\nСписок превращён в цепь\n";
 	}
 }
 
-void List::disjunction(Element* base)	//Разрыв правой связи
+void List::disjunction(Element* base)
 {
 	if (isRing_ == false)
 	{
